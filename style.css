@@ -7,6 +7,7 @@ body {
     display: grid;
     justify-content: start;
     padding: 20px;
+    user-select: none;
     /* gap: 20px; */
 }
 
@@ -26,4 +27,8 @@ body {
 .draw-grid-col:last-child {
     border-width: 2px;
     border-style: none solid none none;
+}
+
+.draw-grid-item:hover {
+    background-color: black;
 }
