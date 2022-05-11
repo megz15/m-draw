@@ -5,12 +5,12 @@ let isRandomColour = false;
 let randomColourButton = document.getElementById('random-colour-button');
 
 function setDrawColour(col) {
-    selectRandomColour()
+    stopRandomColouring();
     drawColour = col;
 }
 
 function selectErasor() {
-    selectRandomColour()
+    stopRandomColouring();
     drawColour = 'white';
     document.getElementById('colour-picker-input').value='#ffffff';
 }
@@ -23,10 +23,14 @@ function setRandomDrawColour() {
     }
 }
 
-function selectRandomColour() {
+function stopRandomColouring() {
+    isRandomColour = false;
+    randomColourButton.textContent = 'Random Colours';
+}
+
+function selectRandomColourButton() {
     if (randomColourButton.textContent === 'Stop') {
-        isRandomColour = false;
-        randomColourButton.textContent = 'Random Colours';
+        stopRandomColouring()
     } else {
         isRandomColour = true;
         randomColourButton.textContent = 'Stop';
@@ -68,7 +72,7 @@ function drawGrid(gridLen) {
 
             a.classList.add('draw-grid-item');
             // a.style.width = a.style.height = gridItemSide + 'px';
-            a.textContent = gridLen*j + i;
+            // a.textContent = gridLen*j + i;
             b.appendChild(a);
         }
     }

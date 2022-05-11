@@ -12,23 +12,23 @@ body {
 }
 
 .draw-grid-item {
-    border-width: 2px;
-    border-color: black;
-    border-style: solid none none solid;
+    border-width: 0px;
+    /* border-color: black; */
+    /* border-style: none; */
     font-size: 10px;
 
     height: 20px;
     width: 20px;
 }
 
-.draw-grid-item:last-child {
+/* .draw-grid-item:last-child {
     border-style: solid none solid solid;
-}
+} */
 
-.draw-grid-col:last-child {
+/* .draw-grid-col:last-child {
     border-width: 2px;
     border-style: none solid none none;
-}
+} */
 
 .draw-grid-item:hover {
     background-color: black;
