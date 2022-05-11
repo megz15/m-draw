@@ -6,6 +6,7 @@ body {
 
 #draw-grid-container {
     display: inline-grid;
+    background-color: white;
     /* justify-content: start; */
     /* gap: 20px; */
 }
