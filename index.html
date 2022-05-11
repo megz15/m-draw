@@ -11,7 +11,10 @@
 <body>
     <div id="canvas">
         <div id="buttons">
-            <div class="button">Choose Colour</div>
+            <div id="colour-picker">
+                <span>Choose Colour:</span>
+                <input type="color" onchange="setDrawColour(this.value)">
+            </div>
             <div class="button">Random Colours</div>
             <div class="button">Erasor</div>
             <div class="button">Change grid size</div>

@@ -3,6 +3,8 @@ let isClick = false;
 // let gridLen = prompt('Enter grid length:', 16);
 let gridLen = 16;
 
+setDrawColour = (col) => drawColour = col;
+
 addEventListener('mousedown', () => isClick = true);
 addEventListener('mouseup', () => isClick = false);
 
