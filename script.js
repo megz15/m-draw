@@ -1,10 +1,12 @@
 let drawColour = 'black';
-// let gridItemSide = 20;
 let isClick = false;
-// let gridLen = prompt('Enter grid length:', 16);
-// let gridLen = 16;
 
 setDrawColour = (col) => drawColour = col;
+
+function selectErasor() {
+    drawColour = 'white';
+    document.getElementById('colour-picker-input').value='#ffffff';
+}
 
 addEventListener('mousedown', () => isClick = true);
 addEventListener('mouseup', () => isClick = false);

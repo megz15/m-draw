@@ -13,10 +13,10 @@
         <div id="buttons">
             <div id="colour-picker">
                 <span>Choose Colour:</span>
-                <input type="color" onchange="setDrawColour(this.value)">
+                <input id="colour-picker-input" type="color" onchange="setDrawColour(this.value)">
             </div>
             <div class="button">Random Colours</div>
-            <div class="button">Erasor</div>
+            <div class="button" onclick="selectErasor()">Erasor</div>
             <div class="button" onclick="drawGrid(prompt('Enter new grid size:', 16))">Change grid size</div>
             <div class="button">Paint bucket</div>
             <div class="button">Clear</div>
