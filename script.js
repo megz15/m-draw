@@ -2,9 +2,13 @@ let isClick = false
 let gridLen = prompt('Enter grid length:', 16);
 // let gridLen = 16;
 
+addEventListener('mousedown', () => isClick = true);
+addEventListener('mouseup', () => isClick = false);
+
 let grid = document.getElementById('draw-grid-container');
 grid.style.gridTemplateColumns = 'auto '.repeat(gridLen)
-grid.addEventListener('mouseleave', () => isClick = false);
+
+// grid.addEventListener('mouseleave', () => isClick = false);
 
 for (let i = 0; i < gridLen; i++) {
     let b = document.createElement('div');
