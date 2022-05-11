@@ -47,7 +47,7 @@ body {
     width: 30px; height: 30px;
 }
 
-#colour-picker {
+#colour-picker, #change-brightness {
     display: flex;
     align-items: center;
     gap: 5px;

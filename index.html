@@ -18,7 +18,10 @@
             <div class="button" onclick="isRandomColour = true" id="random-colour-button">Random Colours</div>
             <div class="button" onclick="selectErasor()">Erasor</div>
             <div class="button" onclick="drawNewGrid('Enter a grid size:')">Change grid size</div>
-            <div class="button" onclick="isLighten = true">Lighten</div>
+            <div id="change-brightness">
+                <input id="change-brightness-value" type="number" size="7" value="-10" onchange="changeBrightnessText(this.value)">
+                <div class="button" id="change-brightness-button" onclick="isChangeBrightness = true">Darken</div>
+            </div>
             <div class="button">Darken</div>
             <div class="button">Gravity</div>
             <div class="button">Paint bucket</div>

@@ -1,7 +1,9 @@
 let drawColour = `hsl(0, 0%, 0%)`;
 let isClick = false;
+// var brightnessChangeBy = -10;
+
 let isRandomColour = false;
-let isLighten = false;
+let isChangeBrightness = false;
 
 let randomColourButton = document.getElementById('random-colour-button');
 
@@ -13,13 +15,13 @@ const RGBToHSL=(r,g,b)=>{r/=255,g/=255,b/=255;const l=Math.max(r,g,b),s=l-Math.m
 
 function setDrawColour(col) {
     isRandomColour = false;
-    isLighten = false;
+    isChangeBrightness = false;
     drawColour = col;
 }
 
 function selectErasor() {
     isRandomColour = false;
-    isLighten = false;
+    isChangeBrightness = false;
     drawColour = `hsl(0, 0%, 100%)`;
     document.getElementById('colour-picker-input').value = '#ffffff';
 }
@@ -32,12 +34,21 @@ function setRandomDrawColour() {
     }
 }
 
+//https://gist.github.com/p01/1005192?permalink_comment_id=1783655#gistcomment-1783655
 const changeCol = (c,n)=>c.map(d=>(d+=n)<0?0:d>255?255:d|0)
 
-function lighten(col) {
-    if (isLighten) {
+function changeBrightnessText(v) {
+    let a = document.getElementById('change-brightness-button')
+    if (v<0) a.textContent = 'Darken';
+    else if (v == 0) a.textContent = 'No change';
+    else a.textContent = 'Lighten'; 
+}
+
+function changeBrightness(col) {
+    if (isChangeBrightness) {
+        brightnessChangeBy = document.getElementById("change-brightness-value").value;
         hslCol = RGBToHSL(...col);
-        hslCol[2] = hslCol[2] + 10;
+        hslCol[2] += parseInt(brightnessChangeBy);
         drawColour = `hsl(${hslCol[0]}, ${hslCol[1]}%, ${hslCol[2]}%)`;
         document.getElementById('colour-picker-input').value = HSLToHex(hslCol[0], hslCol[1], hslCol[2]);
     }
@@ -65,7 +76,7 @@ function drawGrid(gridLen) {
             a.addEventListener('mousedown', function () {
                 isClick = true;
                 setRandomDrawColour();
-                lighten(this.style.backgroundColor.slice(4, -1).split(', '));
+                changeBrightness(this.style.backgroundColor.slice(4, -1).split(', '));
                 this.style.backgroundColor = drawColour;
             });
 
@@ -74,7 +85,7 @@ function drawGrid(gridLen) {
             a.addEventListener('mouseenter', function () {
                 if (isClick) {
                     setRandomDrawColour();
-                    lighten(this.style.backgroundColor.slice(4, -1).split(', '));
+                    changeBrightness(this.style.backgroundColor.slice(4, -1).split(', '));
                     this.style.backgroundColor = drawColour;
                 }
             })
