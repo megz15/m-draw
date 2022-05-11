@@ -8,35 +8,18 @@ body {
     display: inline-grid;
     background-color: white;
     width: 550px; height: 550px;
-    /* justify-content: start; */
-    /* gap: 20px; */
 }
-
-/* .draw-grid-col {
-    height: 31.25px;
-} */
 
 .draw-grid-item {
     border-width: 0px;
-    /* border-color: black;
-    border-style: solid; */
     font-size: 10px;
 
     height: 100%;
     width: 100%;
 }
 
-/* .draw-grid-item:last-child {
-    border-style: solid none solid solid;
-} */
-
-/* .draw-grid-col:last-child {
-    border-width: 2px;
-    border-style: none solid none none;
-} */
-
 .draw-grid-item:hover {
-    background-color: black;
+    background-color: black!important;
 }
 
 #canvas {
