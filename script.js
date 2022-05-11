@@ -1,20 +1,26 @@
-let drawColour = 'black';
+let drawColour = `hsl(0, 0%, 0%)`;
 let isClick = false;
 let isRandomColour = false;
+let isLighten = false;
 
 let randomColourButton = document.getElementById('random-colour-button');
 
 // https://css-tricks.com/converting-color-spaces-in-javascript/#aa-hsl-to-hex
 function HSLToHex(h,s,l){s/=100,l/=100;let c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs(h/60%2-1)),m=l-c/2,r=0,g=0,b=0;return 0<=h&&h<60?(r=c,g=x,b=0):60<=h&&h<120?(r=x,g=c,b=0):120<=h&&h<180?(r=0,g=c,b=x):180<=h&&h<240?(r=0,g=x,b=c):240<=h&&h<300?(r=x,g=0,b=c):300<=h&&h<360&&(r=c,g=0,b=x),r=Math.round(255*(r+m)).toString(16),g=Math.round(255*(g+m)).toString(16),b=Math.round(255*(b+m)).toString(16),1==r.length&&(r="0"+r),1==g.length&&(g="0"+g),1==b.length&&(b="0"+b),"#"+r+g+b}
 
+// https://www.30secondsofcode.org/js/s/rgb-to-hsl
+const RGBToHSL=(r,g,b)=>{r/=255,g/=255,b/=255;const l=Math.max(r,g,b),s=l-Math.min(r,g,b),h=s?l===r?(g-b)/s:l===g?2+(b-r)/s:4+(r-g)/s:0;return[60*h<0?60*h+360:60*h,100*(s?l<=.5?s/(2*l-s):s/(2-(2*l-s)):0),100*(2*l-s)/2]};
+
 function setDrawColour(col) {
     isRandomColour = false;
+    isLighten = false;
     drawColour = col;
 }
 
 function selectErasor() {
     isRandomColour = false;
-    drawColour = 'white';
+    isLighten = false;
+    drawColour = `hsl(0, 0%, 100%)`;
     document.getElementById('colour-picker-input').value = '#ffffff';
 }
 
@@ -23,6 +29,17 @@ function setRandomDrawColour() {
         rnd = Math.random() * 360;
         drawColour = `hsl(${rnd}, 100%, 50%)`
         document.getElementById('colour-picker-input').value = HSLToHex(rnd, 100, 50);
+    }
+}
+
+const changeCol = (c,n)=>c.map(d=>(d+=n)<0?0:d>255?255:d|0)
+
+function lighten(col) {
+    if (isLighten) {
+        hslCol = RGBToHSL(...col);
+        hslCol[2] = hslCol[2] + 10;
+        drawColour = `hsl(${hslCol[0]}, ${hslCol[1]}%, ${hslCol[2]}%)`;
+        document.getElementById('colour-picker-input').value = HSLToHex(hslCol[0], hslCol[1], hslCol[2]);
     }
 }
 
@@ -48,6 +65,7 @@ function drawGrid(gridLen) {
             a.addEventListener('mousedown', function () {
                 isClick = true;
                 setRandomDrawColour();
+                lighten(this.style.backgroundColor.slice(4, -1).split(', '));
                 this.style.backgroundColor = drawColour;
             });
 
@@ -56,6 +74,7 @@ function drawGrid(gridLen) {
             a.addEventListener('mouseenter', function () {
                 if (isClick) {
                     setRandomDrawColour();
+                    lighten(this.style.backgroundColor.slice(4, -1).split(', '));
                     this.style.backgroundColor = drawColour;
                 }
             })
