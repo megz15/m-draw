@@ -1,13 +1,12 @@
 body {
     margin: 0;
     background-color: rgb(242, 245, 201);
+    user-select: none;
 }
 
 #draw-grid-container {
     display: inline-grid;
     justify-content: start;
-    padding: 20px;
-    user-select: none;
     /* gap: 20px; */
 }
 
@@ -31,4 +30,24 @@ body {
 
 .draw-grid-item:hover {
     background-color: black;
+}
+
+#canvas {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+#buttons {
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+    gap: 20px;
+    border: 2px solid black;
+}
+
+#buttons .button {
+    border: 1px dashed red;
+    padding: 5px;
 }
