@@ -1,10 +1,10 @@
+let isClick = false
 let gridLen = prompt('Enter grid length:', 16);
 // let gridLen = 16;
 
 let grid = document.getElementById('draw-grid-container');
 grid.style.gridTemplateColumns = 'auto '.repeat(gridLen)
-
-let isClick = false
+grid.addEventListener('mouseleave', () => isClick = false);
 
 for (let i = 0; i < gridLen; i++) {
     let b = document.createElement('div');
@@ -15,11 +15,11 @@ for (let i = 0; i < gridLen; i++) {
         let a = document.createElement('div');
 
         a.addEventListener('mousedown', function() {
-            isClick = !isClick;
+            isClick = true
             if (isClick) this.style.backgroundColor = 'black';
         });
         
-        // a.addEventListener('mouseup', () => isClick = false);
+        a.addEventListener('mouseup', () => isClick = false);
 
         a.addEventListener('mouseenter', function(){
             if (isClick) this.style.backgroundColor = 'black';

@@ -4,7 +4,7 @@ body {
 }
 
 #draw-grid-container {
-    display: grid;
+    display: inline-grid;
     justify-content: start;
     padding: 20px;
     user-select: none;
